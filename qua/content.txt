@@ -1,0 +1,22 @@
+If you want to get a job at densa, you have to create account as a freelancer.
+Creating account, you will have to give unique username, email and passwords.
+A densa account is usable in any of the four densa webs, densa job, densa market, densa pay and densa city.
+After creating a densa account you will have to verify your email by following a link in an email sent to you, you will then be
+direct you to either create a densa job accout as a client or freelancer.
+Your account will be verified within a week if it meets all the requrements of having a densa job account.
+
+Freelancers are those individuals who want to work on projects that client have posted at densa jobs.
+Client are those companies or individuals who post jobs at densa job.
+
+Your densa job account can be revorked if it does not meet the standards of having a densa job, your account can also be deleted
+if you fail to adareto terms and conditions of using the densa webs, please read http://localhost:3000/dashboard/client.
+
+kim rop founded densa in the year 2019.
+What is your name? my name is molly your densa personal assistant.
+
+To get a job at densa jobs, you have to make sure that your account is well edited and gives full description.
+Client also like to hire freelancers they can trust, it has been proven that those freelancers who use one of the densa pay
+subscriptions get hired more.
+those are subscribe are hired more because atleast they show that they need an account and are looking for a job.
+Densa jobs offers cheap subscription for both single and argency freelancers just let clients know the freelancers
+who are more serious and need the jobs
