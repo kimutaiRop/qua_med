@@ -42,8 +42,7 @@ class ChatBotConsumer(WebsocketConsumer):
             'message': MessageSerializer(message, many=False).data
         }
         if data['from'] != 'qua_bot':
-            print(message)
-            ReplyUserMessage.delay(self.room_group_name, data['message'], data['from'])
+            ReplyUserMessage(self.room_group_name, data['message'], data['from'])
         self.send_chat_message(content)
         return result
 
@@ -55,7 +54,6 @@ class ChatBotConsumer(WebsocketConsumer):
     def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         user = self.scope['user']
-        print(user)
         self.room_group_name = 'chat_%s' % self.room_name
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,

@@ -98,13 +98,10 @@ class ChatBot extends Component {
 
     componentDidMount() {
         this.scrollToBottom();
-        this.props.changeSocketActive(true)
-
     }
 
     componentDidUpdate() {
         this.scrollToBottom();
-
     }
 
     componentWillReceiveProps(newProps) {
@@ -130,17 +127,6 @@ class ChatBot extends Component {
 
     render() {
         let profile_pic = process.env.PUBLIC_URL + "/static/images/user/userlisting/img-07.jpg";
-        if (localStorage.getItem('category') === 'freelancer') {
-            if (this.props.profile.profile_photo) {
-                profile_pic = this.props.profile.profile_photo
-            }
-        } else if (localStorage.getItem('category') === 'client') {
-            if (this.props.profile.owner_prof) {
-                if (this.props.profile.owner_prof.profile_photo) {
-                    profile_pic = this.props.profile.owner_prof.profile_photo
-                }
-            }
-        }
         let renderMessages = messages => {
             const currentUser = this.props.username;
             if (messages) {
@@ -150,7 +136,7 @@ class ChatBot extends Component {
                             message.author.username === currentUser ?
                                 <div className="chat-message chat-message-right">
                                     <div className="chat-message-text">
-                                        <span>Hello! please, let me know the status about project after school.</span>
+                                        <span>{message.text}</span>
                                     </div>
                                     <div className="chat-message-meta">
                                         <span>4:18 pm<i className="feather icon-check ml-2"/></span>
@@ -158,7 +144,7 @@ class ChatBot extends Component {
                                 </div> :
                                 <div className="chat-message chat-message-left">
                                     <div className="chat-message-text">
-                                        <span>I have completed 4 stages 5 stages remaining.</span>
+                                        <span>{message.text}</span>
                                     </div>
                                     <div className="chat-message-meta">
                                         <span>4:20 pm<i className="feather icon-check ml-2"/></span>
@@ -172,19 +158,47 @@ class ChatBot extends Component {
             }
         };
         return (
-            <div className="chat-body">
-                <div className="tab-content" id="chat-listContent">
-                    <div className="tab-pane fade show active" id="chat-first" role="tabpanel"
-                         aria-labelledby="chat-first-tab">
-                        <div className="chat-day text-center mb-3">
-                            <span className="badge badge-secondary-inverse">Today</span>
+            <div>
+                <div className="chat-body">
+                    <div className="tab-content" id="chat-listContent">
+                        <div className="tab-pane fade show active" style={{marginBottom:"15px"}} id="chat-first" role="tabpanel"
+                             aria-labelledby="chat-first-tab">
+                            <div className="chat-day text-center mb-3">
+                                <span className="badge badge-secondary-inverse">Today</span>
+                            </div>
+                            {
+                                this.props.messages && renderMessages(this.props.messages)
+                            }
+                            <div style={{float: "left", clear: "both"}}
+                                 ref={el => {
+                                     this.messagesEnd1 = el;
+                                 }}
+                            />
+
                         </div>
-                        {
-                            this.props.messages && renderMessages(this.props.messages)
-                        }
 
                     </div>
-
+                </div>
+                <div className="chat-bottom">
+                    <div className="chat-messagebar">
+                        <form method={'post'} className="Ej-replaybox" onSubmit={this.sendMessageHandler}>
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <a href="index.html#" id="button-addonmic"><i
+                                        className="feather icon-mic"/></a>
+                                </div>
+                                <input type="text" className="form-control" placeholder="Type a message..."
+                                       aria-label="Text" value={this.state.message}
+                                       onChange={this.messageChangeHandler}/>
+                                <div className="input-group-append">
+                                    <a href="javascript:;" className="mr-3" id="button-addonlink"><i
+                                        className="feather icon-paperclip"/></a>
+                                    <button style={{border:"0px",backgroundColor:"inherit",fontSize:"22px"}} type={'submit'} id="button-addonsend"><i
+                                        className="feather icon-send"/></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         );

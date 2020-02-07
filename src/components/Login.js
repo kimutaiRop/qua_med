@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as action from '../store/actions/Auth'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
@@ -18,6 +18,18 @@ class Login extends Component {
     }
 
     render() {
+        let errorMessage = null;
+        if (this.props.error) {
+            let em_pas1 = this.props.error.email || this.props.error.password1,
+                em_pas2 = this.props.error.password2 || this.props.error.username;
+            if (!em_pas1) {
+                if (!em_pas2) {
+                    errorMessage =
+                            this.props.error
+
+                }
+            }
+        }
         return (
             <div id="containerbar" className="containerbar authenticate-bg">
                 {/* Start Container */}
@@ -31,10 +43,11 @@ class Login extends Component {
                                 <div className="auth-box-right">
                                     <div className="card">
                                         <div className="card-body">
+                                            {errorMessage}
                                             <form onSubmit={this.LoginHandler}>
                                                 <div className="form-head">
-                                                    <a href="/" className="logo"><img
-                                                        src="assets/images/logo.svg" className="img-fluid" alt="logo"/></a>
+                                                    <Link to="/" className="logo"><img
+                                                        src="/static/assets/images/logo.svg" className="img-fluid" alt="logo"/></Link>
                                                 </div>
                                                 <h4 className="text-primary my-4">Log in !</h4>
                                                 <div className="form-group">
@@ -56,8 +69,8 @@ class Login extends Component {
                                                     </div>
                                                     <div className="col-sm-6">
                                                         <div className="forgot-psw">
-                                                            <a id="forgot-psw" href="forgot-password"
-                                                               className="font-14">Forgot Password?</a>
+                                                            <Link id="forgot-psw" to="forgot-password"
+                                                               className="font-14">Forgot Password?</Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -65,8 +78,8 @@ class Login extends Component {
                                                         className="btn btn-success btn-lg btn-block font-18">Log in
                                                 </button>
                                             </form>
-                                            <p className="mb-0 mt-3">Don't have a account? <a href="/register">Sign
-                                                up</a></p>
+                                            <p className="mb-0 mt-3">Don't have a account? <Link to="/register">Sign
+                                                up</Link></p>
                                         </div>
                                     </div>
                                 </div>

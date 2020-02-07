@@ -100,5 +100,5 @@ def ReplyUserMessage(channel_name, message, conversation):
                                              'type': "new_message",
                                              'conversation': conversation,
                                              'Event': "New message",
-                                             "from": "molly",
+                                             "from": "qua_bot",
                                              "message": message})

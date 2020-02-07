@@ -1,0 +1,5 @@
+node_modules
+build
+bot/settings/base.py
+.idea
+db.sqlite3

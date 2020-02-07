@@ -6,7 +6,7 @@ import * as actions from "./store/actions/Auth";
 import * as navActions from "./store/actions/nav";
 import * as messageActions from "./store/actions/message";
 import WebSocketInstance from "./websocket";
-import HomePage from "./components/UnEdited";
+import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ForgotPassword from "./components/ForgotPassword";

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as action from '../store/actions/Auth'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 class Register extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Register extends Component {
     RegisterHandler(event) {
         event.preventDefault();
         let username = event.target.elements.username.value,
-            email = event.target.elements.username.value,
+            email = event.target.elements.email.value,
             password1 = event.target.elements.password1.value,
             password2 = event.target.elements.password2.value;
         this.props.onAuth(username, email, password1, password2)
@@ -35,8 +35,8 @@ class Register extends Component {
                                         <div className="card-body">
                                             <form onSubmit={this.RegisterHandler}>
                                                 <div className="form-head">
-                                                    <a href="index.html" className="logo"><img
-                                                        src="assets/images/logo.svg" className="img-fluid" alt="logo"/></a>
+                                                    <Link to="/" className="logo"><img
+                                                        src="/static/assets/images/logo.svg" className="img-fluid" alt="logo"/></Link>
                                                 </div>
                                                 <h4 className="text-primary my-4">Sign Up !</h4>
                                                 <div className="form-group">
@@ -65,7 +65,7 @@ class Register extends Component {
                                                                    id="terms"/>
                                                             <label className="custom-control-label font-14"
                                                                    htmlFor="terms">I Agree to Terms &amp; Conditions of
-                                                                Gappa</label>
+                                                                qua </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,8 +73,8 @@ class Register extends Component {
                                                         className="btn btn-success btn-lg btn-block font-18">Register
                                                 </button>
                                             </form>
-                                            <p className="mb-0 mt-3">Already have an account? <a href="/login">Log
-                                                in</a></p>
+                                            <p className="mb-0 mt-3">Already have an account? <Link to="/login">Log
+                                                in</Link></p>
                                         </div>
                                     </div>
                                 </div>
