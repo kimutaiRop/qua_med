@@ -1,5 +1,3 @@
-import os
-
 from asgiref.sync import async_to_sync
 from celery import shared_task
 from channels.layers import get_channel_layer
@@ -7,30 +5,30 @@ from channels.layers import get_channel_layer
 channel_layer = get_channel_layer()
 import urllib.request
 import re
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 import nltk
 import random
 import string
 import bs4 as bs
 
-raw_data = urllib.request.urlopen('https://en.wikipedia.org/wiki/Global_warming')
-raw_data = raw_data.read()
+try:
+    raw_data = urllib.request.urlopen('https://en.wikipedia.org/wiki/Global_warming')
+    raw_data = raw_data.read()
 
-html_data = bs.BeautifulSoup(raw_data, 'lxml')
+    html_data = bs.BeautifulSoup(raw_data, 'lxml')
 
-all_paragraphs = html_data.find_all('p')
+    all_paragraphs = html_data.find_all('p')
 
-article_content = ""
+    article_content = ""
 
-for p in all_paragraphs:
-    article_content += p.text
+    for p in all_paragraphs:
+        article_content += p.text
 
-article_content = article_content.lower()  # converts to lowercase
+    article_content = article_content.lower()  # converts to lowercase
 
-article_content = re.sub(r'\[[0-9]*\]', ' ', article_content)
-article_content = re.sub(r'\s+', ' ', article_content)
-
+    article_content = re.sub(r'\[[0-9]*\]', ' ', article_content)
+    article_content = re.sub(r'\s+', ' ', article_content)
+except:
+    article_content = "my name is kimutai"
 sentence_list = nltk.sent_tokenize(article_content)
 article_words = nltk.word_tokenize(article_content)
 

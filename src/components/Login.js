@@ -6,7 +6,7 @@ import {Link, withRouter} from 'react-router-dom'
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
         this.LoginHandler = this.LoginHandler.bind(this)
     }
 
@@ -25,7 +25,7 @@ class Login extends Component {
             if (!em_pas1) {
                 if (!em_pas2) {
                     errorMessage =
-                            this.props.error
+                        this.props.error
 
                 }
             }
@@ -43,19 +43,23 @@ class Login extends Component {
                                 <div className="auth-box-right">
                                     <div className="card">
                                         <div className="card-body">
-                                            {errorMessage}
                                             <form onSubmit={this.LoginHandler}>
+
                                                 <div className="form-head">
                                                     <Link to="/" className="logo"><img
-                                                        src="/static/assets/images/logo.svg" className="img-fluid" alt="logo"/></Link>
+                                                        src="/static/assets/images/logo.svg" className="img-fluid"
+                                                        alt="logo"/></Link>
                                                 </div>
                                                 <h4 className="text-primary my-4">Log in !</h4>
+                                                <p style={{color:"red"}}>{errorMessage}</p>
                                                 <div className="form-group">
-                                                    <input type="text" name={'username'} className="form-control" id="username"
+                                                    <input type="text" name={'username'} className="form-control"
+                                                           id="username"
                                                            placeholder="Username" required/>
                                                 </div>
                                                 <div className="form-group">
-                                                    <input type="password" name={'password'} className="form-control" id="password"
+                                                    <input type="password" name={'password'} className="form-control"
+                                                           id="password"
                                                            placeholder="Password" required/>
                                                 </div>
                                                 <div className="form-row mb-3">
@@ -70,7 +74,7 @@ class Login extends Component {
                                                     <div className="col-sm-6">
                                                         <div className="forgot-psw">
                                                             <Link id="forgot-psw" to="forgot-password"
-                                                               className="font-14">Forgot Password?</Link>
+                                                                  className="font-14">Forgot Password?</Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -100,7 +104,7 @@ class Login extends Component {
 const mapSateToProps = (state) => {
     return {
         loading: state.loading,
-        error: state.loading
+        error:state.auth.error
     }
 };
 const mapDispatchToProps = dispatch => {

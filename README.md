@@ -1622,5 +1622,13 @@ Please refer to [this section](#resolving-heroku-deployment-errors).
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
 
-`celery -A bot worker --beat -c 5 --loglevel=info`
+`celery -A bot worker --loglevel=info`
+
+`npm run build`
+
+`python manage.py migrate`
+
+`python manange.py runserver`
+
+
 # qua_med

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import * as action from '../store/actions/Auth'
 import ChatBot from "./ChatBot";
 import axios from 'axios'
+import {HOST_URL} from "../settings";
 
 class HomePage extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        let url = '/get-profile/';
+        let url = HOST_URL + '/get-profile/';
         axios.defaults.xsrfCookieName = "csrftoken";
         axios.defaults.headers = {
             "Content-Type": "application/json",
@@ -92,12 +93,14 @@ class HomePage extends Component {
                                             </div>
                                             <div className="col-3">
                                                 {
-                                                    localStorage.getItem('token')?
-                                                        <a href="#" onClick={this.props.authLogout} data-toggle="tooltip" data-placement="right"
-                                                   title="Logout"><i className="feather icon-log-out"/></a>
+                                                    localStorage.getItem('token') ?
+                                                        <a href="#" onClick={this.props.authLogout}
+                                                           data-toggle="tooltip" data-placement="right"
+                                                           title="Logout"><i className="feather icon-log-out"/></a>
                                                         :
                                                         <Link to="/login" data-toggle="tooltip" data-placement="right"
-                                                   title="Logout"><i className="feather icon-log-out"/></Link>
+                                                              title="Logout"><i
+                                                            className="feather icon-log-out"/></Link>
                                                 }
                                             </div>
                                         </div>
@@ -110,8 +113,8 @@ class HomePage extends Component {
                                                 <i className="feather icon-camera upload-button"/>
                                                 <input className="profile-upload" type="file" accept="image/*"/>
                                             </div>
-                                            <h5>Will Patinson</h5>
-                                            <p className="mb-0">Florida, USA</p>
+                                            <h5>Edna Mugoh</h5>
+                                            <p className="mb-0">Machakos, KE</p>
                                         </div>
                                         <div className="profile-detail">
                                             <ul className="list-unstyled mb-0">
@@ -121,8 +124,8 @@ class HomePage extends Component {
                                                         <p>Username</p>
                                                         <div className="input-group">
                                                             <input type="text" className="form-control"
-                                                                   defaultValue="Will Patinson"
-                                                                   aria-label="Will Patinson"
+                                                                   defaultValue="Edna Mugoh"
+                                                                   aria-label="Edna Mugoh"
                                                                    aria-describedby="button-addon-group-username"/>
                                                             <div className="input-group-append">
                                                                 <button className="btn btn-link" type="button"
@@ -138,7 +141,7 @@ class HomePage extends Component {
                                                         <p>Location</p>
                                                         <div className="input-group">
                                                             <input type="text" className="form-control"
-                                                                   defaultValue="Florida, USA" aria-label="Florida, USA"
+                                                                   defaultValue="Machakos, KE" aria-label="Machakos, Ke"
                                                                    aria-describedby="button-addon-group-location"/>
                                                             <div className="input-group-append">
                                                                 <button className="btn btn-link" type="button"
@@ -154,8 +157,8 @@ class HomePage extends Component {
                                                         <p>Status</p>
                                                         <div className="input-group">
                                                             <input type="text" className="form-control"
-                                                                   defaultValue="I am on Gappa."
-                                                                   aria-label="I am on Gappa"
+                                                                   defaultValue="I am comp scie."
+                                                                   aria-label="I am comp scie."
                                                                    aria-describedby="button-addon-group-status"/>
                                                             <div className="input-group-append">
                                                                 <button className="btn btn-link" type="button"
@@ -171,8 +174,8 @@ class HomePage extends Component {
                                                         <p>Email ID</p>
                                                         <div className="input-group">
                                                             <input type="email" className="form-control"
-                                                                   defaultValue="demo@example.com"
-                                                                   aria-label="demo@example.com"
+                                                                   defaultValue="edmugoh@example.com"
+                                                                   aria-label="edmugoh@example.com"
                                                                    aria-describedby="button-addon-group-emailid"/>
                                                             <div className="input-group-append">
                                                                 <button className="btn btn-link" type="button"
@@ -223,12 +226,14 @@ class HomePage extends Component {
                                             </div>
                                             <div className="col-3">
                                                 {
-                                                    localStorage.getItem('token')?
-                                                        <a href="#" onClick={this.props.authLogout} data-toggle="tooltip" data-placement="right"
-                                                   title="Logout"><i className="feather icon-log-out"/></a>
+                                                    localStorage.getItem('token') ?
+                                                        <a href="#" onClick={this.props.authLogout}
+                                                           data-toggle="tooltip" data-placement="right"
+                                                           title="Logout"><i className="feather icon-log-out"/></a>
                                                         :
                                                         <Link to="/login" data-toggle="tooltip" data-placement="right"
-                                                   title="Logout"><i className="feather icon-log-out"/></Link>
+                                                              title="Logout"><i
+                                                            className="feather icon-log-out"/></Link>
                                                 }
                                             </div>
                                         </div>
@@ -386,10 +391,13 @@ class HomePage extends Component {
                                                 <img className="align-self-center rounded-circle"
                                                      src="/static/assets/images/girl.svg"
                                                      alt="Generic placeholder image"/>
-                                                <div className="media-body">
-                                                    <h5>{this.state.user.first_name} {this.state.user.last_name}</h5>
-                                                    <p className="mb-0">Online</p>
-                                                </div>
+                                                {this.state.user ?
+                                                    <div className="media-body">
+                                                        <h5>{this.state.user.first_name} {this.state.user.last_name}</h5>
+                                                        <p className="mb-0">Online</p>
+                                                    </div> :
+                                                    null
+                                                }
                                             </li>
                                         </ul>
                                     </div>
@@ -399,13 +407,13 @@ class HomePage extends Component {
                                                 <a href="#" data-toggle="modal"
                                                    data-target="#incomingVoiceCall"><i className="feather icon-phone"/></a>
                                             </li>
-                                            <li className="list-inline-item">
-                                                <a href="#" data-toggle="modal"
-                                                   data-target="#incomingVideoCall"><i className="feather icon-video"/></a>
-                                            </li>
+                                            {/*<li className="list-inline-item">*/}
+                                            {/*    <a href="#" data-toggle="modal"*/}
+                                            {/*       data-target="#incomingVideoCall"><i className="feather icon-video"/></a>*/}
+                                            {/*</li>*/}
                                             <li className="list-inline-item">
                                                 <div className="dropdown">
-                                                    <a href="#" className id="chatDropdown"
+                                                    <a href="#" id="chatDropdown"
                                                        data-toggle="dropdown" aria-haspopup="true"
                                                        aria-expanded="false"><i
                                                         className="feather icon-more-vertical-"/></a>
@@ -434,7 +442,7 @@ class HomePage extends Component {
                                 </div>
                             </div>
                             {
-                                this.state.user.username ?
+                                this.state.user ?
                                     <ChatBot profile={this.state.profile} username={this.state.user.username}
                                              user={this.state.user}/> :
                                     null
@@ -495,29 +503,29 @@ class HomePage extends Component {
                                     <div className="user-media">
                                         <div className="user-media-slider">
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/media_01.png" className
+                                                <img src="/static/assets/images/media_01.png"
                                                      alt="user-media"/>
                                             </div>
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/media_02.png" className
+                                                <img src="/static/assets/images/media_02.png"
                                                      alt="user-media"/>
                                             </div>
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/media_03.png" className
+                                                <img src="/static/assets/images/media_03.png"
                                                      alt="user-media"/>
                                             </div>
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/media_04.png" className
+                                                <img src="/static/assets/images/media_04.png"
                                                      alt="user-media"/>
                                             </div>
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/pdf.svg" className alt="user-media"/>
+                                                <img src="/static/assets/images/pdf.svg" alt="user-media"/>
                                             </div>
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/xls.svg" className alt="user-media"/>
+                                                <img src="/static/assets/images/xls.svg" alt="user-media"/>
                                             </div>
                                             <div className="user-media-slider-item">
-                                                <img src="/static/assets/images/doc.svg" className alt="user-media"/>
+                                                <img src="/static/assets/images/doc.svg" alt="user-media"/>
                                             </div>
                                         </div>
                                     </div>

@@ -45,9 +45,9 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = "email_username"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/set-category"
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/"
 
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/set-category"
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/"
 PASSWORD_REST_REDIRECT_URL = "/login"
 
 
@@ -111,7 +111,7 @@ USE_L10N = True
 USE_TZ = True
 
 DEFAULT_FILE_STORAGE = 'bot.storage_backends.MediaStorage'
-# aws
+CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
 
@@ -121,8 +121,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "static-root")
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media-root")
@@ -131,3 +129,12 @@ MEDIAFILES_DIRS = (MEDIA_ROOT)
 
 ROOT_URLCONF = 'bot.urls'
 BROKER_POOL_LIMIT = 3
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000', 'http://127.0.0.1:8000', 'http://127.0.0.1:3000','127.0.0.1'
+)
+INTERNAL_IPS = {
+
+    '127.0.0.1', '192.168.0.147', '192.168.0.117'
+
+}

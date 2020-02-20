@@ -7,6 +7,8 @@ const BaseRouter = ({comp: Comp, ...rest}) => (
             localStorage.getItem('token') ?
                 <Comp {...props} /> :
                 <Redirect to={'/login'}/> :
+            localStorage.getItem('token') ?
+                <Redirect to={'/'}/>:
             <Comp {...props} />
     )}/>
 );
